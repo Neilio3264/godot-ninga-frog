@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://kqbsi30rigkp"]
+
+[ext_resource type="Shader" path="res://Shaders/cloud.gdshader" id="1_3y0dg"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t04v8"]
+shader = ExtResource("1_3y0dg")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xv44g"]
+
+[node name="sky_2d" type="Sprite2D"]
+material = SubResource("ShaderMaterial_t04v8")
+position = Vector2(148, 88.75)
+scale = Vector2(296, 178.5)
+texture = SubResource("CanvasTexture_xv44g")

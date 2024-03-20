@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://ir540h0odw8v"]
+
+[ext_resource type="Texture2D" uid="uid://bavqsbbacoowq" path="res://Legacy-Fantasy - High Forest 2.3/Mob/Boar/Idle/Idle-Sheet-export-Back.png" id="1_pfgp7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_migp5"]
+atlas = ExtResource("1_pfgp7")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_poxl5"]
+atlas = ExtResource("1_pfgp7")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkj46"]
+atlas = ExtResource("1_pfgp7")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caiyu"]
+atlas = ExtResource("1_pfgp7")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mvjec"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_migp5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_poxl5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkj46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caiyu")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation_1",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ok814"]
+size = Vector2(38, 26)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 1)
+scale = Vector2(0.958333, 0.9375)
+sprite_frames = SubResource("SpriteFrames_mvjec")
+animation = &"new_animation"
+autoplay = "new_animation"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 3)
+shape = SubResource("RectangleShape2D_ok814")
