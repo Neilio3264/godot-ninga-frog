@@ -313,11 +313,12 @@ height = 24.0
 
 [node name="NinjaFrog" type="CharacterBody2D"]
 position = Vector2(1, 1)
+collision_layer = 2
 script = ExtResource("1_4886b")
 
 [node name="NinjaFrogAnimations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_v104t")
-animation = &"Death"
+animation = &"idle"
 autoplay = "idle"
 centered = false
 

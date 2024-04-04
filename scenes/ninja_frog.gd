@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 signal health_depleted
 
 @export var speed: float = 150.0
@@ -20,6 +21,7 @@ var start_pos = Vector2.ZERO
 var lives = 3
 var deathcount = 0
 var was_in_air = false
+var start_death = false
 
 func _ready():
 	health_depleted.emit(lives)
@@ -55,7 +57,9 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed)
 
-	move_and_slide()
+		move_and_slide()
+	if start_death:
+		death()
 	update_anim()
 
 func update_anim():
@@ -110,13 +114,18 @@ func land():
 	animated_sprite.play("Fall")
 	animation_Locked = true
 
-func death():
+func death_handler():
 	gravity = 0
 	velocity.y = 0
 	velocity.x = 0
 	animated_sprite.play("Death")
 	animation_Locked = true
 	death_Lock = true
+	can_input = false
+
+func death():
+	start_death = true
+	death_handler()
 
 
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
@@ -125,12 +134,9 @@ func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shap
 func _on_area_2d_2_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	death()
 
-func _on_opp_block_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	death()
-	
-
-
 func _on_ninja_frog_animations_animation_finished():
 	if(["Land", "Backflip", "Death"].has(animated_sprite.animation)):
 		animation_Locked = false
+		can_input = true
+		start_death = false
 		
